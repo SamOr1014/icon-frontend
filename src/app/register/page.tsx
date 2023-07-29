@@ -1,18 +1,13 @@
-"use client";
+import RegisterForm from "./_components/RegisterForm";
+import RegisterTitle from "./_components/Title";
 
-export default function RegisterPage() {
+const RegisterPage = () => {
   return (
-    <>
-      <div className="container">
-        <button
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        >
-          back to home
-        </button>
-        Register
-      </div>
-    </>
+    <div className="flex flex-col gap-10 min-w-[350px] md:min-w-[500px] min-h-[600px] p-7 rounded-lg shadow-lg shadow-white">
+      <RegisterTitle />
+      <RegisterForm />
+    </div>
   );
-}
+};
+
+export default RegisterPage;

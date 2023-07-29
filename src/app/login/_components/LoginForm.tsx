@@ -2,20 +2,18 @@
 
 import { useLogin } from "@/hooks/useLogin";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FormErrorMessage } from "../_utils/formError";
-import { PasswordInput } from "./PasswordInput";
-import { Input } from "@/components/Input";
+import { FormErrorMessage } from "../../../utils/formError";
 import { Button } from "@/components/Button";
+import PasswordInput from "../../../components/PasswordInput";
+import FormInput from "@/components/FormInput";
 
 type LoginForm = {
   email: string;
   password: string;
 };
 
-export const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+const LoginForm = () => {
   const { fetcher: login } = useLogin();
   const router = useRouter();
   const {
@@ -35,23 +33,32 @@ export const LoginForm = () => {
     res.success && router.push("/");
   };
 
-  const handleShowPassword = () => setShowPassword((prev) => !prev);
-
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)}>
-      <div className="flex flex-col gap-10">
-        <Input
-          label="Email: "
-          error={errors.email?.type && FormErrorMessage(errors.email.type)}
-          placeholder="Email"
-          {...register("email", {
-            required: true,
-            pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-          })}
-        />
+    <form
+      onSubmit={handleSubmit(handleFormSubmit)}
+      className="flex flex-col gap-20"
+    >
+      <div className="flex flex-col gap-5">
+        <div>
+          <label className="label">
+            <span className="label-text">Email: </span>
+          </label>
+          <FormInput
+            label="Email: "
+            placeholder="Email"
+            {...register("email", {
+              required: true,
+              // eslint-disable-next-line no-useless-escape
+              pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            })}
+          />
+          {errors.email?.type && (
+            <label className="label-text-alt bg-red-500">
+              {FormErrorMessage(errors.email.type)}
+            </label>
+          )}
+        </div>
         <PasswordInput
-          handleShowPassword={handleShowPassword}
-          showPassword={showPassword}
           error={
             errors.password?.type && FormErrorMessage(errors.password.type)
           }
@@ -61,10 +68,12 @@ export const LoginForm = () => {
             minLength: 8,
           })}
         />
-        <Button className="btn btn-primary" type="submit">
-          Login
-        </Button>
       </div>
+      <Button className="btn btn-primary" type="submit">
+        Login
+      </Button>
     </form>
   );
 };
+
+export default LoginForm;

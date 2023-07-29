@@ -1,9 +1,9 @@
 "use client";
 
+import HomeIcon from "@/components/icons/HomeIcon";
 import { useRouter } from "next/navigation";
-import HomeIcon from "../_assets/HomeIcon";
 
-export const HomeButton = () => {
+const HomeButton = () => {
   const router = useRouter();
 
   const redirectToHome = () => router.push("/");
@@ -14,3 +14,5 @@ export const HomeButton = () => {
     </button>
   );
 };
+
+export default HomeButton;
