@@ -12,7 +12,6 @@ export const usePostRequest = <T, R>() => {
       const res = await axios.post<R>(`${APIUrl + path}`, formData);
       setData(res.data as R);
       setIsLoading(false);
-      console.log("data", data);
       return res.data as R;
     } catch (e) {
       setIsLoading(false);
