@@ -9,6 +9,7 @@ import { usePostRequest } from "@/hooks/usePostRequest";
 import { useRouter } from "next/navigation";
 import { SubmitButton } from "./SubmitButton";
 import { ErrorMessage } from "./ErrorMessage";
+import { FormLabel } from "@/components/FormLabel";
 
 const CHECK_ROUTE = "/auth/check";
 
@@ -117,9 +118,7 @@ const RegisterForm = () => {
     >
       <div className="flex flex-col">
         <div>
-          <label className="label">
-            <span className="label-text">Username: </span>
-          </label>
+          <FormLabel>Username:</FormLabel>
           <div className="flex gap-2 items-center w-full">
             <div className="flex-1">
               <FormInput
@@ -144,9 +143,7 @@ const RegisterForm = () => {
           <ErrorMessage errors={errors.username} />
         </div>
         <div>
-          <label className="label">
-            <span className="label-text">Email: </span>
-          </label>
+          <FormLabel>Email: </FormLabel>
           <div className="flex w-full gap-2 items-center">
             <div className="flex-1">
               <FormInput
