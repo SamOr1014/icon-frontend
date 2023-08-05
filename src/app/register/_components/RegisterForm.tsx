@@ -114,9 +114,9 @@ const RegisterForm = () => {
   return (
     <form
       onSubmit={handleSubmit(handleSubmitUserForm)}
-      className="flex flex-col gap-14"
+      className="flex flex-col flex-1 justify-between mt-4 w-full"
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1 gap-8">
         <div>
           <FormLabel>Username:</FormLabel>
           <div className="flex gap-2 items-center w-full">

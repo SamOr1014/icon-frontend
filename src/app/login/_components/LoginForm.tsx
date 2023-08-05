@@ -7,6 +7,9 @@ import { FormErrorMessage } from "../../../utils/formError";
 import { Button } from "@/components/Button";
 import PasswordInput from "../../../components/PasswordInput";
 import FormInput from "@/components/FormInput";
+import { useCallback, useEffect, useState } from "react";
+import { WarnToast } from "@/components/toast/Warn";
+import { ErrorToast } from "@/components/toast/Error";
 
 type LoginForm = {
   email: string;
@@ -15,6 +18,9 @@ type LoginForm = {
 
 const LoginForm = () => {
   const { fetcher: login } = useLogin();
+  const [LoginStatus, setLoginStatus] = useState<"error" | "badReq" | null>(
+    null
+  );
   const router = useRouter();
   const {
     register,
@@ -27,17 +33,42 @@ const LoginForm = () => {
     },
   });
 
+  useEffect(() => {
+    setTimeout(() => setLoginStatus(null), 1500);
+  }, [LoginStatus]);
+
   const handleFormSubmit: SubmitHandler<LoginForm> = async (data) => {
     const { email, password } = data;
-    const res = await login(email, password);
-    res.success && router.push("/");
+    try {
+      const res = await login(email, password);
+      if (res.data.success) {
+        router.push("/");
+        return;
+      }
+      setLoginStatus("badReq");
+      return;
+    } catch (err) {
+      setLoginStatus("error");
+      return;
+    }
   };
+  const Toast = useCallback(() => {
+    switch (LoginStatus) {
+      case "error":
+        return <ErrorToast>Login Errored</ErrorToast>;
+      case "badReq":
+        return <WarnToast>Login Failed</WarnToast>;
+      default:
+        return <></>;
+    }
+  }, [LoginStatus]);
 
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="flex flex-col gap-20"
+      className="flex flex-1 flex-col gap-20"
     >
+      {LoginStatus !== null && <Toast />}
       <div className="flex flex-col gap-5">
         <div>
           <label className="label">
@@ -54,14 +85,12 @@ const LoginForm = () => {
           />
           {errors.email?.type && (
             <label className="label-text-alt bg-red-500">
-              {FormErrorMessage(errors.email.type)}
+              {FormErrorMessage(errors.email)}
             </label>
           )}
         </div>
         <PasswordInput
-          error={
-            errors.password?.type && FormErrorMessage(errors.password.type)
-          }
+          error={errors.password?.type && FormErrorMessage(errors.password)}
           placeholder="Password"
           {...register("password", {
             required: true,
@@ -69,7 +98,7 @@ const LoginForm = () => {
           })}
         />
       </div>
-      <Button className="btn btn-primary" type="submit">
+      <Button className="btn btn-primary text-lg" type="submit">
         Login
       </Button>
     </form>

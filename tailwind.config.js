@@ -11,6 +11,9 @@ module.exports = {
     extend: {
       container: {
         center: true,
+      },
+      fontFamily: {
+        sans: ["var(--font-signika)"]
       }
     },
   },

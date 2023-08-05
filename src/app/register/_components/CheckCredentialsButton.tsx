@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/Button";
 import { Spinner } from "@/components/Spinner";
-import { ErrorIcon } from "@/components/icons/ErrorIcon";
-import { QuestionIcon } from "@/components/icons/QuestionIcon";
-import { TickIcon } from "@/components/icons/TickIcon";
+import { ErrorIcon } from "@/components/icons/Error";
+import { QuestionIcon } from "@/components/icons/Question";
+import { TickIcon } from "@/components/icons/Tick";
 
 type Props = {
   disabled?: boolean;
