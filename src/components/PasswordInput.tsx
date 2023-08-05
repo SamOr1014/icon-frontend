@@ -7,6 +7,7 @@ import {
   forwardRef,
   useState,
 } from "react";
+import { FormLabel } from "./FormLabel";
 
 type Props = {
   error?: string;
@@ -23,9 +24,7 @@ const PasswordInput = forwardRef(({ error, ...restProps }: Props, ref) => {
 
   return (
     <div>
-      <label className="label">
-        <span className=" label-text">Password: </span>
-      </label>
+      <FormLabel>Password:</FormLabel>
       <div className="relative">
         <input
           ref={ref}
