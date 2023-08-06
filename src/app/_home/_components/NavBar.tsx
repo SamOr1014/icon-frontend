@@ -10,6 +10,7 @@ export const NavBar = () => {
           alt="Icon.io"
           className="aspect-square md:w-[80px] md:h-[80px] w-[60px] h-[60px]"
         />
+        <div className="text-3xl">Icon.io</div>
       </div>
       <NavButtons />
     </nav>
