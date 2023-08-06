@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="night">
       <body
-        className={`${Font.variable} font-sans bg-gradient-to-b from-base-300 to-base-100`}
+        className={`${Font.variable} font-sans bg-gradient-to-b from-base-300 to-base-100 overflow-auto`}
       >
         {children}
       </body>

@@ -66,7 +66,7 @@ const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="flex flex-1 flex-col gap-20"
+      className="flex flex-1 flex-col gap-20 py-10"
     >
       {LoginStatus !== null && <Toast />}
       <div className="flex flex-col gap-5">
@@ -98,7 +98,10 @@ const LoginForm = () => {
           })}
         />
       </div>
-      <Button className="btn btn-primary text-lg" type="submit">
+      <Button
+        className="btn btn-primary hover:primary-focus text-primary-content text-lg"
+        type="submit"
+      >
         Login
       </Button>
     </form>

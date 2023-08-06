@@ -4,7 +4,9 @@ type Props = {
 
 const RegisterLayout = ({ children }: Props) => {
   return (
-    <div className={"container grid place-items-center h-screen"}>
+    <div
+      className={"container grid place-items-center h-screen overflow-x-hidden"}
+    >
       {children}
     </div>
   );
