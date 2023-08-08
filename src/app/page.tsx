@@ -1,6 +1,6 @@
-import { Content } from "./home/_components/Content";
-import { Footer } from "./home/_components/Footer";
-import { NavBar } from "./home/_components/NavBar";
+import { Content } from "./_home/_components/Content";
+import { Footer } from "./_home/_components/Footer";
+import { NavBar } from "./_home/_components/NavBar";
 
 export default function Home() {
   return (
