@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const HomeButton = () => {
   return (
-    <Link href={"/"} className="flex justify-center items-center">
+    <Link href={"/"} className="flex-center">
       <HomeIcon />
     </Link>
   );

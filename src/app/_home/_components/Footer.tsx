@@ -19,7 +19,7 @@ export const Footer = () => {
         >
           Github
         </Link>
-        <div className="divider divider-horizontal"></div>{" "}
+        <div className="divider divider-horizontal"></div>
         <Link
           className="link link-hover"
           href="mailto:orchamsumsam1014@gmail.com"

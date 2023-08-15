@@ -126,11 +126,11 @@ const RegisterForm = () => {
                 {...register("username", {
                   minLength: 8,
                   required: true,
+                  onChange: () => {
+                    clearErrors();
+                    resetCheckUsername();
+                  },
                 })}
-                onChange={() => {
-                  clearErrors();
-                  resetCheckUsername();
-                }}
               />
             </div>
             <CheckButton
@@ -154,11 +154,11 @@ const RegisterForm = () => {
                   required: true,
                   // eslint-disable-next-line no-useless-escape
                   pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                  onChange: () => {
+                    clearErrors();
+                    resetCheckEmail();
+                  },
                 })}
-                onChange={() => {
-                  clearErrors();
-                  resetCheckEmail();
-                }}
               />
             </div>
             <CheckButton
@@ -171,7 +171,7 @@ const RegisterForm = () => {
           <ErrorMessage errors={errors.email} />
         </div>
         <PasswordInput
-          error={FormErrorMessage(errors.password)}
+          error={errors.password}
           placeholder="Password"
           {...register("password", {
             required: true,

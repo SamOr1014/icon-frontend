@@ -4,15 +4,14 @@ import { NavBar } from "./_home/_components/NavBar";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 bg-base-300 z-10">
+    <main className="min-h-screen flex flex-col">
+      <header className="sticky top-0 z-10 backdrop-blur-md">
         <NavBar />
       </header>
       <div className="w-full flex flex-col flex-1 items-center">
         <Content />
       </div>
-      <div className="w-full flex flex-1 items-center justify-center"></div>
       <Footer />
-    </div>
+    </main>
   );
 }

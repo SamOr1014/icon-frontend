@@ -14,15 +14,13 @@ type Props = {
 
 const FormInput = forwardRef(({ inputBgColour, ...restProps }: Props, ref) => {
   return (
-    <div>
-      <input
-        ref={ref}
-        {...restProps}
-        className={`w-full input input-bordered ${
-          inputBgColour ? `bg-[${inputBgColour}]` : "bg-gray-700"
-        }`}
-      />
-    </div>
+    <input
+      ref={ref}
+      {...restProps}
+      className={`w-full input input-bordered ${
+        inputBgColour ? `bg-[${inputBgColour}]` : "bg-gray-700"
+      }`}
+    />
   );
 });
 
