@@ -1,33 +1,24 @@
 "use client";
 
-import {
-  DetailedHTMLProps,
-  InputHTMLAttributes,
-  PropsWithRef,
-  forwardRef,
-  useState,
-} from "react";
+import { PropsWithRef, forwardRef, useState } from "react";
+import { FormLabel } from "./FormLabel";
+import FormInput from "./FormInput";
+import { FieldError } from "react-hook-form";
+import { FormErrorMessage } from "@/utils/formError";
 
 type Props = {
-  error?: string;
-  handleShowPassword: () => void;
-  showPassword: boolean;
-} & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> &
-  PropsWithRef<any>;
-
-const DEFAULT_ERROR_MESSAGE = "Please enter valid value";
+  error?: FieldError;
+} & PropsWithRef<any>;
 
 const PasswordInput = forwardRef(({ error, ...restProps }: Props, ref) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword((prev) => !prev);
 
   return (
-    <div>
-      <label className="label">
-        <span className=" label-text">Password: </span>
-      </label>
+    <>
+      <FormLabel>Password:</FormLabel>
       <div className="relative">
-        <input
+        <FormInput
           ref={ref}
           type={showPassword ? "text" : "password"}
           className={`w-full input input-bordered bg-gray-700`}
@@ -44,13 +35,13 @@ const PasswordInput = forwardRef(({ error, ...restProps }: Props, ref) => {
       {error ? (
         <label className="label">
           <span className="label-text-alt text-red-500">
-            {error ?? DEFAULT_ERROR_MESSAGE}
+            {FormErrorMessage(error)}
           </span>
         </label>
       ) : (
         <></>
       )}
-    </div>
+    </>
   );
 });
 

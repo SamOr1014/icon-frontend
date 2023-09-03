@@ -9,8 +9,9 @@ import { usePostRequest } from "@/hooks/usePostRequest";
 import { useRouter } from "next/navigation";
 import { SubmitButton } from "./SubmitButton";
 import { ErrorMessage } from "./ErrorMessage";
+import { FormLabel } from "@/components/FormLabel";
 
-const CHECK_ROUTE = "/auth/check";
+const CHECK_ROUTE = "auth/check";
 
 type RegisterForm = {
   username: string;
@@ -94,7 +95,7 @@ const RegisterForm = () => {
   };
 
   const handleSubmitUserForm = async (data: RegisterForm) => {
-    const res = await submitUserForm("/users", data);
+    const res = await submitUserForm("user", data);
     if (res?.success) {
       router.push("/login");
     } else {
@@ -113,13 +114,11 @@ const RegisterForm = () => {
   return (
     <form
       onSubmit={handleSubmit(handleSubmitUserForm)}
-      className="flex flex-col gap-14"
+      className="flex flex-col flex-1 justify-between mt-4 w-full"
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1 gap-8">
         <div>
-          <label className="label">
-            <span className="label-text">Username: </span>
-          </label>
+          <FormLabel>Username:</FormLabel>
           <div className="flex gap-2 items-center w-full">
             <div className="flex-1">
               <FormInput
@@ -127,11 +126,11 @@ const RegisterForm = () => {
                 {...register("username", {
                   minLength: 8,
                   required: true,
+                  onChange: () => {
+                    clearErrors();
+                    resetCheckUsername();
+                  },
                 })}
-                onChange={() => {
-                  clearErrors();
-                  resetCheckUsername();
-                }}
               />
             </div>
             <CheckButton
@@ -144,9 +143,7 @@ const RegisterForm = () => {
           <ErrorMessage errors={errors.username} />
         </div>
         <div>
-          <label className="label">
-            <span className="label-text">Email: </span>
-          </label>
+          <FormLabel>Email: </FormLabel>
           <div className="flex w-full gap-2 items-center">
             <div className="flex-1">
               <FormInput
@@ -157,11 +154,11 @@ const RegisterForm = () => {
                   required: true,
                   // eslint-disable-next-line no-useless-escape
                   pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                  onChange: () => {
+                    clearErrors();
+                    resetCheckEmail();
+                  },
                 })}
-                onChange={() => {
-                  clearErrors();
-                  resetCheckEmail();
-                }}
               />
             </div>
             <CheckButton
@@ -174,7 +171,7 @@ const RegisterForm = () => {
           <ErrorMessage errors={errors.email} />
         </div>
         <PasswordInput
-          error={FormErrorMessage(errors.password)}
+          error={errors.password}
           placeholder="Password"
           {...register("password", {
             required: true,

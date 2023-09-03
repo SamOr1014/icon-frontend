@@ -1,17 +1,11 @@
-"use client";
-
-import HomeIcon from "@/components/icons/HomeIcon";
-import { useRouter } from "next/navigation";
+import HomeIcon from "@/components/icons/Home";
+import Link from "next/link";
 
 const HomeButton = () => {
-  const router = useRouter();
-
-  const redirectToHome = () => router.push("/");
-
   return (
-    <button className="btn btn-link h-full" onClick={redirectToHome}>
+    <Link href={"/"} className="flex-center">
       <HomeIcon />
-    </button>
+    </Link>
   );
 };
 
