@@ -32,15 +32,15 @@ export const Menu = () => {
             </Link>
           </li>
           <li>
-            <Link href={"/dashboard/create"} className="flex-center">
-              <EditIcon className="w-5 h-5" />
-              <span>Create</span>
-            </Link>
-          </li>
-          <li>
             <Link href={"/dashboard/explore"} className="flex-center">
               <EarthIcon className="w-5 h-5" />
               <span>Explore</span>
+            </Link>
+          </li>
+          <li>
+            <Link href={"/dashboard/create"} className="flex-center">
+              <EditIcon className="w-5 h-5" />
+              <span>Create</span>
             </Link>
           </li>
           <li>

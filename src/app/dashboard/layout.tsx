@@ -1,7 +1,7 @@
 import React from "react";
-import { DashboardHeader } from "./_components/Header";
 import { Metadata } from "next";
 import { Menu } from "./_components/Menu";
+import { Content } from "./_components/Content";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -18,14 +18,7 @@ export default function DashboardLayout({ children }: Props) {
         {/*  */}
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <Menu />
-        <div className="drawer-content">
-          {/* dashboard header */}
-          <nav className="h-[80px] backdrop-blur-md border-b dark:border-slate-300/20 flex items-center p-4">
-            <DashboardHeader />
-          </nav>
-          {/* here is the dashboard content */}
-          <div className="w-full overflow-scroll p-10">{children}</div>
-        </div>
+        <Content>{children}</Content>
       </main>
     </section>
   );

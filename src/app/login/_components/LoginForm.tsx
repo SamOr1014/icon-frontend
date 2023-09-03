@@ -12,6 +12,7 @@ import { WarnToast } from "@/components/toast/Warn";
 import { ErrorToast } from "@/components/toast/Error";
 import Link from "next/link";
 import { ErrorMessage } from "@/app/register/_components/ErrorMessage";
+import { apiClients } from "@/utils/axiosInstance";
 
 type LoginForm = {
   email: string;
@@ -36,38 +37,45 @@ const LoginForm = () => {
     },
   });
 
-  useEffect(() => {
-    return setLoginStatus(null);
-  }, [loginStatus]);
-
   const handleFormSubmit: SubmitHandler<LoginForm> = async (data) => {
     console.log("submit");
     const { email, password } = data;
     try {
       const res = await login(email, password);
       if (res.data.success) {
-        console.log("cookie", res.request);
         router.push("/dashboard");
         return;
       }
       setLoginStatus("badReq");
+      setTimeout(() => setLoginStatus(null), 3000);
       return;
     } catch (err) {
-      console.log("error", err);
       setLoginStatus("error");
+      setTimeout(() => setLoginStatus(null), 3000);
       return;
     }
   };
   const Toast = useCallback(() => {
     switch (loginStatus) {
       case "error":
-        return <ErrorToast>Login Errored</ErrorToast>;
+        return <ErrorToast>Server Error</ErrorToast>;
       case "badReq":
         return <WarnToast>Login Failed</WarnToast>;
       default:
         return <></>;
     }
   }, [loginStatus]);
+
+  const checkIfAlreadyLogin = async () => {
+    const { status } = await apiClients.get("auth");
+    if (status === 200) {
+      router.push("/dashboard");
+    }
+  };
+
+  useEffect(() => {
+    checkIfAlreadyLogin();
+  }, []);
 
   return (
     <form

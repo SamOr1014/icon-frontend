@@ -11,7 +11,7 @@ import { SubmitButton } from "./SubmitButton";
 import { ErrorMessage } from "./ErrorMessage";
 import { FormLabel } from "@/components/FormLabel";
 
-const CHECK_ROUTE = "/auth/check";
+const CHECK_ROUTE = "auth/check";
 
 type RegisterForm = {
   username: string;
@@ -95,7 +95,7 @@ const RegisterForm = () => {
   };
 
   const handleSubmitUserForm = async (data: RegisterForm) => {
-    const res = await submitUserForm("/users", data);
+    const res = await submitUserForm("user", data);
     if (res?.success) {
       router.push("/login");
     } else {
