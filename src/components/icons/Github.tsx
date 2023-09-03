@@ -2,7 +2,7 @@ export const GithubIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       viewBox="0 0 16 16"
-      className={className ?? "w-5 h-5"}
+      className={className ?? "w-6 h-6"}
       fill="currentColor"
       aria-hidden="true"
     >

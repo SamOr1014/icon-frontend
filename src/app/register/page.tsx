@@ -1,5 +1,10 @@
+import { Metadata } from "next";
 import RegisterForm from "./_components/RegisterForm";
 import RegisterTitle from "./_components/Title";
+
+export const metadata: Metadata = {
+  title: "Register",
+};
 
 const RegisterPage = () => {
   return (

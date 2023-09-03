@@ -1,5 +1,5 @@
-import { APIUrl } from "@/constants/env";
-import axios, { AxiosError } from "axios";
+import { apiClients } from "@/utils/axiosInstance";
+import { AxiosError } from "axios";
 import { useState } from "react";
 
 export const usePostRequest = <T, R>() => {
@@ -9,7 +9,7 @@ export const usePostRequest = <T, R>() => {
   const postRequest = async (path: string, formData: T) => {
     try {
       setIsLoading(true);
-      const res = await axios.post<R>(`${APIUrl + path}`, formData);
+      const res = await apiClients.post<R>(path, formData);
       setData(res.data as R);
       setIsLoading(false);
       return res.data as R;

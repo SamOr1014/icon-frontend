@@ -16,7 +16,9 @@ export const SubmitButton = ({
 }: Props) => {
   return (
     <Button
-      className={`btn btn-secondary ${disable ? "btn-disabled" : ""} text-lg`}
+      className={`btn btn-primary text-primary-content ${
+        disable ? "btn-disabled" : ""
+      } text-lg`}
       type="submit"
       onClick={onClick}
     >

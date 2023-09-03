@@ -29,7 +29,6 @@ export const PicCarousel = () => {
           quality={80}
           style={{ objectFit: "cover" }}
         />
-
         <Image
           src={food2}
           alt="car2"

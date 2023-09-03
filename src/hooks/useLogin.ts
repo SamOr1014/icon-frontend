@@ -1,5 +1,5 @@
-import { APIUrl } from "@/constants/env";
-import axios, { AxiosResponse } from "axios";
+import { apiClients } from "@/utils/axiosInstance";
+import { AxiosResponse } from "axios";
 
 type UseLogin = () => {
   fetcher: (
@@ -15,14 +15,10 @@ type Response = {
 
 export const useLogin: UseLogin = () => {
   const loginFetcher = async (email: string, password: string) => {
-    const res = await axios.post<Response>(
-      `${APIUrl}/auth/login`,
-      {
-        email,
-        password,
-      },
-      { validateStatus: (status) => status < 500 }
-    );
+    const res = await apiClients.post<Response>(`auth/login`, {
+      email,
+      password,
+    });
     return res;
   };
 

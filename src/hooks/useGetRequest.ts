@@ -1,5 +1,5 @@
-import { APIUrl } from "@/constants/env";
-import axios, { AxiosError } from "axios";
+import { apiClients } from "@/utils/axiosInstance";
+import { AxiosError } from "axios";
 import { useState } from "react";
 
 type AxiosConfig = {
@@ -13,7 +13,7 @@ export const useGetRequest = <T,>() => {
   const getRequest = async (path: string, option?: AxiosConfig) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${APIUrl + path}`, {
+      const response = await apiClients.get(`${path}`, {
         params: option?.params,
       });
       setData(response.data as T);
